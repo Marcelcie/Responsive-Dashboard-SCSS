@@ -1,0 +1,16 @@
+$primary-color: #0078D4;  
+$bg-light: #F7F9FB;       
+$text-dark: #333333;      
+$sidebar-width: 250px;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: blue !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: $text-dark;
+}
