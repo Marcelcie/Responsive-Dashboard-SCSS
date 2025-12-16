@@ -4,9 +4,6 @@ Nowoczesny, responsywny panel administracyjny stworzony w celu nauki zaawansowan
 
 👉 **Live Demo:** [Zobacz projekt tutaj](https://marcelcie.github.io/Responsive-Dashboard-SCSS/)
 
-![Dashboard Preview](screenshot.png)
-*(Tutaj pojawi się podgląd Twojej strony - instrukcja niżej)*
-
 ## 🛠 Technologie
 
 * **HTML5** - semantyczna struktura.
