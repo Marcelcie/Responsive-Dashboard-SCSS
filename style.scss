@@ -8,8 +8,6 @@ $text-light: #666666;
 $sidebar-width: 250px;    
 $header-height: 60px;     
 
-
-
 * {
     box-sizing: border-box; 
     margin: 0;
@@ -32,16 +30,26 @@ h2 {
     margin-bottom: 15px;
     font-size: 1.25rem;
 }
-
+h3{
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
 a {
     text-decoration: none;
     color: $text-dark;
+    display: flex;         
+    align-items: center;  
+    gap: 15px;
+}
+
+i {
+    margin-right: 15px;
+    width: 20px;
 }
 
 [class*="icon-"] {
     margin-right: 10px;
 }
-
 
 .dashboard-grid {
     display: grid;
@@ -89,6 +97,14 @@ a {
         }
     }
 }
+.fa-circle-user {
+    font-size: 1.5rem;  
+    color: #333;         
+    margin-left: 10px;   
+    &:hover{
+        color: lighten($color: #333, $amount: 10%);
+    }
+}
 
 .sidebar {
     grid-area: sidebar;
@@ -105,6 +121,7 @@ a {
             li a {
                 display: flex;
                 align-items: center;
+                justify-content: space-between;
                 padding: 15px 30px;
                 color: $text-dark;
                 font-weight: 500;
@@ -140,13 +157,50 @@ a {
     gap: 20px;
     margin-bottom: 30px;
 }
-
 .card {
     flex: 1;
     background-color: $bg-white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start;
+.card-info {
+        display: flex;
+        flex-direction: column; 
+
+        h3 {
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 5px;
+        }
+
+        .count {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .trend {
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            &.positive { color: #2ecc71; }
+            &.negative { color: #e74c3c; }
+            
+            span { color: #ccc; font-weight: 400; }
+        }
+    }
+
+    .card-icon {
+        font-size: 2.5rem;
+        color: $primary-color;
+        margin-left: 15px;
+    }
+}
 
     h3 {
         font-size: 1rem;
@@ -158,7 +212,6 @@ a {
         font-weight: 700;
         color: $text-dark;
     }
-}
 
 .recent-activity table {
     width: 100%;
@@ -191,7 +244,6 @@ a {
         }
     }
 }
-
 
 @media (max-width: 768px) {
     .dashboard-grid {

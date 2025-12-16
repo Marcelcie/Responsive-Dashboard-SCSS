@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive-Dashboard</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="dashboard-grid">
@@ -12,27 +13,43 @@
         <header class="header">
             <div class="logo">Admin</div>
             <nav class="user-nav">
-                <a href="#">Użytkownik</a>
-                <button>Wyloguj</button>
+                <a href="#"><i class="fa-solid fa-circle-user"></i></a>
+                <button class = "btn-logout">Wyloguj</button>
             </nav>
         </header>
 
         <aside class="sidebar">
             <nav class="main-menu">
                 <ul>
-                    <li><a href="#" class="active">Pulpit</a></li>
-                    <li><a href="#">Zarządzanie Podpisami</a></li>
-                    <li><a href="#">Raporty</a></li>
-                    <li><a href="#">Ustawienia</a></li>
+                    <li><a href="#" class="active">Pulpit<i class="fa-solid fa-house"></i></a></li>
+                    <li><a href="#">Zarządzanie Podpisami<i class="fa-regular fa-address-card"></i></a></li>
+                    <li><a href="#">Raporty<i class="fa-solid fa-address-book"></i></a></li>
+                    <li><a href="#">Ustawienia<i class="fa-solid fa-gear"></i></a></li>
                 </ul>
             </nav>
         </aside>
 
         <main class="main-content">
             
-            <section class="stats-cards">
-                <h2>Przegląd</h2>
-                <div class="card">Aktywne Reguły: 12</div> 
+        <section class="stats-cards">
+            <h2>Podgląd</h2>
+            <div class="card">
+        <div class="card-info">
+        <h3>Użytkownicy</h3>
+        <div class="count">1,240</div>
+        
+        <div class="trend positive">
+            <i class="fa-solid fa-arrow-up"></i> 
+            +5.2% 
+            <span>od wczoraj</span>
+        </div>
+        </div>
+
+        <div class="card-icon">
+        <i class="fa-solid fa-users"></i>
+        </div>
+        </div>
+
             </section>
             
             <section class="recent-activity">
