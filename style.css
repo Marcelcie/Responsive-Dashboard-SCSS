@@ -73,17 +73,93 @@ i {
   margin-right: 20px;
   font-size: 0.95rem;
 }
-.header .user-nav .btn-logout {
-  background-color: #0078D4;
+.header .user-nav .logout {
+  width: 40px;
+  height: 40px;
   color: #FFFFFF;
-  border: none;
+  margin-right: 0px;
+  background-color: #0078D4;
   padding: 8px 15px;
-  border-radius: 4px;
+  border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.2s;
 }
-.header .user-nav .btn-logout:hover {
+.header .user-nav .logout i {
+  margin-right: 0;
+}
+.header .user-nav .logout:hover {
   background-color: rgb(0, 91.1320754717, 161);
+}
+
+.card:hover {
+  background-color: #E0E0E0;
+  cursor: pointer;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+.card:hover .trend i {
+  animation: arrow-scroll 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.card:hover .trend i {
+  display: inline-block;
+  transform-style: preserve-3d;
+}
+
+.recent-activity {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
+  margin-top: 20px;
+}
+.recent-activity table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.recent-activity table thead tr {
+  text-align: left;
+  border-bottom: 2px solid #f0f0f0;
+}
+.recent-activity table thead tr th {
+  padding: 15px 10px;
+  color: #777;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.recent-activity table tbody tr {
+  border-bottom: 1px solid #f8f8f8;
+  transition: background-color 0.2s;
+}
+.recent-activity table tbody tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+.recent-activity table tbody tr:hover td {
+  background-color: #f1f1f1;
+}
+.recent-activity table tbody tr td {
+  padding: 15px 10px;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.badge.success {
+  background-color: rgb(209.304, 244.696, 224.312);
+  color: #27ae60;
+}
+.badge.warning {
+  background-color: rgb(252.2440944882, 243.3858267717, 207.7559055118);
+  color: #d35400;
+}
+.badge.danger {
+  background-color: rgb(250.5616438356, 221.897260274, 218.9383561644);
+  color: #c0392b;
 }
 
 .fa-circle-user {
@@ -201,27 +277,6 @@ h3 {
   color: #333333;
 }
 
-.recent-activity table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: #FFFFFF;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  border-radius: 8px;
-}
-.recent-activity table th, .recent-activity table td {
-  padding: 15px;
-  text-align: left;
-  border-bottom: 1px solid #E0E0E0;
-}
-.recent-activity table th {
-  background-color: rgb(250.4, 251.55, 252.7);
-  font-weight: 600;
-  color: #333333;
-}
-.recent-activity table tr:last-child td {
-  border-bottom: none;
-}
-
 @media (max-width: 1000px) {
   .card-container {
     flex-wrap: wrap;
@@ -260,5 +315,23 @@ h3 {
   }
   .card-container .card {
     flex: 1 1 100%;
+  }
+}
+@keyframes arrow-scroll {
+  0% {
+    transform: translate3d(0, 0, 0) rotateX(0deg);
+    opacity: 1;
+  }
+  35% {
+    transform: translate3d(0, -15px, 0) rotateX(90deg);
+    opacity: 0;
+  }
+  36% {
+    transform: translate3d(0, 15px, 0) rotateX(-90deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotateX(0deg);
+    opacity: 1;
   }
 }/*# sourceMappingURL=style.css.map */

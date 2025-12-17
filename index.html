@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,7 @@
             <div class="logo">Admin</div>
             <nav class="user-nav">
                 <a href="#"><i class="fa-solid fa-circle-user"></i></a>
-                <button class = "btn-logout">Wyloguj</button>
+                <a class = "logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
             </nav>
         </header>
 
@@ -30,7 +30,6 @@
         </aside>
 
         <main class="main-content">
-            
         <section class="stats-cards">
             <h2>Podgląd</h2>
             <div class="card">
@@ -54,6 +53,42 @@
             
             <section class="recent-activity">
                 <h2>Ostatnie Zdarzenia</h2>
+                <table>
+        <thead>
+            <tr>
+                <th>Użytkownik</th>
+                <th>Data</th>
+                <th>Akcja</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Jan Kowalski</td>
+                <td>17 Gru 2025</td>
+                <td>Logowanie</td>
+                <td><span class="badge success">Sukces</span></td>
+            </tr>
+            <tr>
+                <td>Anna Nowak</td>
+                <td>17 Gru 2025</td>
+                <td>Zmiana hasła</td>
+                <td><span class="badge warning">Oczekuje</span></td>
+            </tr>
+            <tr>
+                <td>Piotr Zieliński</td>
+                <td>16 Gru 2025</td>
+                <td>Błąd płatności</td>
+                <td><span class="badge danger">Błąd</span></td>
+            </tr>
+            <tr>
+                <td>Maria Wiśniewska</td>
+                <td>16 Gru 2025</td>
+                <td>Wylogowanie</td>
+                <td><span class="badge success">Sukces</span></td>
+            </tr>
+            </tbody>
+        </table>
                 </section>
             
         </main>
