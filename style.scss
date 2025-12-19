@@ -1,3 +1,4 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 $primary-color: #0078D4;  
 $bg-light: #F7F9FB;       
 $bg-white: #FFFFFF;       
@@ -164,6 +165,19 @@ i {
         }
     }
 }
+.fa-gear{
+    width: 24px;  
+    height: 24px;
+    display: inline-flex !important;
+    margin-right: 10px;
+    vertical-align: middle;
+    transition: color 0.3s ease;
+    transform-origin: center center;
+    justify-content: center;
+    align-items: center;
+    display: inline-block; 
+    transition: color 0.3s;
+}
 
 .badge {
     padding: 5px 12px;
@@ -215,9 +229,12 @@ i {
                 color: $text-dark;
                 font-weight: 500;
                 transition: background-color 0.2s;
-
                 &:hover {
                     background-color: lighten($border-color, 3%);
+                        .fa-gear{
+                        animation: fa-gear 2s linear infinite;
+                         color: $primary-color;
+             }
                 }
                 &.active {
                     background-color: $primary-color;
@@ -354,6 +371,15 @@ i {
     .card-container .card {
         flex: 1 1 100%;
     }
+}
+@keyframes fa-gear {
+    0% {
+        transform:rotate(0deg) ;
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+
 }
 @keyframes arrow-scroll {
     0% {
