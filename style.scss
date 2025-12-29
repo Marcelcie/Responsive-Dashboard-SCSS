@@ -1,4 +1,3 @@
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 $primary-color: #0078D4;  
 $bg-light: #F7F9FB;       
 $bg-white: #FFFFFF;       
@@ -45,7 +44,7 @@ a {
 
 i {
     margin-right: 15px;
-    width: 20px;
+    font-size: 20px;
 }
 
 [class*="icon-"] {
@@ -82,7 +81,7 @@ i {
         align-items: center;
         a {
             margin-right: 20px;
-            font-size: 0.95rem;
+            font-size: 3rem;
         }
         .logout {
             width: 40px;
@@ -201,9 +200,9 @@ i {
     }
 }
 .fa-circle-user {
-    font-size: 1.5rem;  
     color: #333;         
-    margin-left: 10px;   
+    margin-left: 10px;
+    padding: 10px;   
     &:hover{
         color: lighten($color: #333, $amount: 10%);
     }

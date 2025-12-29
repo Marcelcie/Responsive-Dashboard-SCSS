@@ -12,10 +12,12 @@
         
         <header class="header">
             <div class="logo">Admin</div>
-            <nav class="user-nav">
-                <a href="#"><i class="fa-solid fa-circle-user"></i></a>
-                <a class = "logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
-            </nav>
+        <nav class="user-nav">
+        <a href="#" id="user_login" style="display: flex !important; width: 50px !important; height: 50px !important; justify-content: center; align-items: center;">
+            <i class="fa-solid fa-circle-user" style="font-size: 40px !important; margin: 0 !important;"></i>
+        </a>
+        <a class="logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+    </nav>
         </header>
 
         <aside class="sidebar">
@@ -89,7 +91,15 @@
             </tr>
             </tbody>
         </table>
-                </section>
+            </section>
+<section class="stats-cards">
+                <br>
+    <h2>Podgląd</h2>
+        <div class="card chart-card">
+            <canvas id="userTrendChart"></canvas>
+        </div>
+    </div>
+</section>
             
         </main>
 
@@ -97,5 +107,7 @@
             <p>&copy; 2025 responsive dashboard</p>
         </footer>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
