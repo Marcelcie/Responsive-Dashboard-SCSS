@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive-Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -13,8 +13,8 @@
         <header class="header">
             <div class="logo">Admin</div>
         <nav class="user-nav">
-        <a href="#" id="user_login" style="display: flex !important; width: 50px !important; height: 50px !important; justify-content: center; align-items: center;">
-            <i class="fa-solid fa-circle-user" style="font-size: 40px !important; margin: 0 !important;"></i>
+        <a href="login.html" id="user_login" style="display: flex !important; width: 50px !important; height: 50px !important; justify-content: center; align-items: center;">
+        <i class="fa-solid fa-circle-user" style="font-size: 40px !important; margin: 0 !important;"></i>
         </a>
         <a class="logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
     </nav>
@@ -95,7 +95,7 @@
 <section class="stats-cards">
                 <br>
     <h2>Podgląd</h2>
-        <div class="card chart-card">
+        <div id="card chart-card">
             <canvas id="userTrendChart"></canvas>
         </div>
     </div>
@@ -108,6 +108,6 @@
         </footer>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
