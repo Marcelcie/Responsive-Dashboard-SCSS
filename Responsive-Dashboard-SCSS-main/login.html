@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaloguj się</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="login-container">
+        
+        <div class="login-box card-style">
+            <h1>Witaj ponownie</h1>
+
+            <!-- 🔐 FORMULARZ LOGOWANIA Z FIREBASE -->
+            <!-- id="loginForm" - JavaScript szuka tego formularza -->
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="emailInput">E-mail</label>
+                    <div class="input-wrapper">
+                        <!-- id="emailInput" - skrypt pobiera email stąd -->
+                        <input type="email" id="emailInput" placeholder="twoj@email.com" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="passwordInput">Hasło</label>
+                    <div class="input-wrapper">
+                        <!-- id="passwordInput" - skrypt pobiera hasło stąd -->
+                        <input type="password" id="passwordInput" placeholder="********" required>
+                        <i class="fa-regular fa-eye toggle-password"></i>
+                    </div>
+                </div>
+
+                <div class="form-group-checkbox" style="justify-content: space-between;">
+                    <div style="display:flex; gap:10px; align-items:center;">
+                        <input type="checkbox" id="login-remember">
+                        <label for="login-remember">Pamiętaj mnie</label>
+                    </div>
+                    <a href="#" style="font-size: 13px; color: #007bff;">Nie pamiętasz hasła?</a>
+                </div>
+
+                <button type="submit" class="login-btn">Zaloguj się</button>
+            </form>
+
+            <div class="divider-text">lub zaloguj przez</div>
+
+            <div class="social-login">
+                <button class="social-btn" id="btn-google"><i class="fa-brands fa-google"></i></button>
+                <button class="social-btn" id="btn-amazon"><i class="fa-brands fa-amazon"></i></button>
+                <button class="social-btn" id="btn-windows"><i class="fa-brands fa-windows"></i></button>
+            </div>
+
+            <div class="login-footer">
+                <p>Nie masz konta? <a href="rejestracja.html">Zarejestruj się</a></p>
+            </div>
+        </div> 
+        <footer class="simple-footer">
+            <div class="links">
+                <a href="#">Polityka Prywatności</a>
+                <span class="sep">•</span>
+                <a href="#">Regulamin</a>
+                <span class="sep">•</span>
+                <a href="#">Pomoc</a>
+            </div>
+            <p class="copyright">&copy; 2026 Twój Sklep. Wszelkie prawa zastrzeżone.</p>
+        </footer>
+
+    </div> 
+    <!-- 🔐 Skrypt logowania z Firebase -->
+    <!-- type="module" - pozwala na import/export -->
+    <script type="module" src="js/login.js"></script>
+</body>
+</html>
