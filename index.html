@@ -12,22 +12,22 @@
         
         <header class="header">
             <div class="logo">Admin</div>
-        <nav class="user-nav">
-        <button id="theme-toggle" class="theme-btn">
-            🌙
-        </button>
-        <a href="login.html" id="user_login" style="display: flex !important; width: 50px !important; height: 50px !important; justify-content: center; align-items: center;">
-        <i class="fa-solid fa-circle-user" style="font-size: 40px !important; margin: 0 !important;"></i>
-        </a>
-        <a class="logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
-    </nav>
+            <nav class="user-nav">
+                <button id="theme-toggle" class="theme-btn" title="Przełącz motyw">
+                    🌙
+                </button>
+                <span id="user-email-display">Wczytywanie...</span>
+                <a href="login.html" id="user_login" style="display: flex !important; width: 50px !important; height: 50px !important; justify-content: center; align-items: center;">
+                    <i class="fa-solid fa-circle-user" style="font-size: 40px !important; margin: 0 !important;"></i>
+                </a>
+                <a class="logout" id="logoutBtn" style="cursor: pointer;" title="Wyloguj się"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+            </nav>
         </header>
 
         <aside class="sidebar">
             <nav class="main-menu">
                 <ul>
                     <li><a href="#" class="active">Pulpit<i class="fa-solid fa-house"></i></a></li>
-                    <li><a href="#">Zarządzanie Podpisami<i class="fa-regular fa-address-card"></i></a></li>
                     <li><a href="#">Raporty<i class="fa-solid fa-address-book"></i></a></li>
                     <li><a href="#">Ustawienia<i class="fa-solid fa-gear"></i></a></li>
                 </ul>
@@ -35,82 +35,130 @@
         </aside>
 
         <main class="main-content">
-        <section class="stats-cards">
-            <h2>Podgląd</h2>
-            <div class="card">
-        <div class="card-info">
-        <h3>Użytkownicy</h3>
-        <div class="count">1,240</div>
-        
-        <div class="trend positive">
-            <i class="fa-solid fa-arrow-up"></i> 
-            +5.2% 
-            <span>od wczoraj</span>
-        </div>
-        </div>
+            <section class="stats-cards">
+                <h2>Podgląd</h2>
+                
+                <div class="card-container">
+                    <!-- Karta 1: Użytkownicy -->
+                    <div class="card" id="card-users">
+                        <div class="card-info">
+                            <h3>Użytkownicy</h3>
+                            <div class="count" id="stats-users-count">0</div>
+                            <div class="trend positive">
+                                <i class="fa-solid fa-users"></i>
+                                <span>Zarejestrowani</span>
+                            </div>
+                        </div>
+                        <div class="card-icon">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                    </div>
 
-        <div class="card-icon">
-        <i class="fa-solid fa-users"></i>
-        </div>
-        </div>
+                    <!-- Karta 2: Zdarzenia -->
+                    <div class="card" id="card-events">
+                        <div class="card-info">
+                            <h3>Zdarzenia</h3>
+                            <div class="count" id="stats-events-count">0</div>
+                            <div class="trend positive">
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                                <span>Wszystkie wpisy</span>
+                            </div>
+                        </div>
+                        <div class="card-icon">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                    </div>
 
+                    <!-- Karta 3: Błędy -->
+                    <div class="card" id="card-errors">
+                        <div class="card-info">
+                            <h3>Błędy</h3>
+                            <div class="count" id="stats-errors-count">0</div>
+                            <div class="trend negative" id="stats-errors-trend">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <span>Wymagają uwagi</span>
+                            </div>
+                        </div>
+                        <div class="card-icon" style="color: #e74c3c;">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                    </div>
+                </div>
             </section>
-            
-            <section class="recent-activity">
-                <h2>Ostatnie Zdarzenia</h2>
-                <table>
-        <thead>
-            <tr>
-                <th>Użytkownik</th>
-                <th>Data</th>
-                <th>Akcja</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Jan Kowalski</td>
-                <td>17 Gru 2025</td>
-                <td>Logowanie</td>
-                <td><span class="badge success">Sukces</span></td>
-            </tr>
-            <tr>
-                <td>Anna Nowak</td>
-                <td>17 Gru 2025</td>
-                <td>Zmiana hasła</td>
-                <td><span class="badge warning">Oczekuje</span></td>
-            </tr>
-            <tr>
-                <td>Piotr Zieliński</td>
-                <td>16 Gru 2025</td>
-                <td>Błąd płatności</td>
-                <td><span class="badge danger">Błąd</span></td>
-            </tr>
-            <tr>
-                <td>Maria Wiśniewska</td>
-                <td>16 Gru 2025</td>
-                <td>Wylogowanie</td>
-                <td><span class="badge success">Sukces</span></td>
-            </tr>
-            </tbody>
-        </table>
+
+            <section class="chart-container-card">
+                <h2>Aktywność w tygodniu</h2>
+                <div class="chart-wrapper">
+                    <canvas id="userTrendChart"></canvas>
+                </div>
             </section>
-<section class="stats-cards">
-                <br>
-    <h2>Podgląd</h2>
-        <div id="card chart-card">
-            <canvas id="userTrendChart"></canvas>
-        </div>
-    </div>
-</section>
-            
+                        <section class="recent-activity">
+                <div class="section-header">
+                    <h2>Ostatnie Zdarzenia</h2>
+                    <button id="addEventBtn" class="btn-add">
+                        <i class="fa-solid fa-plus"></i> Dodaj zdarzenie
+                    </button>
+                </div>
+                <table id="eventsTable">
+                    <thead>
+                        <tr>
+                            <th>Użytkownik</th>
+                            <th>Data</th>
+                            <th>Akcja</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="eventsTableBody">
+                        <!-- Renderowane dynamicznie w JS -->
+                    </tbody>
+                </table>
+            </section>
         </main>
 
         <footer class="footer">
-            <p>&copy; 2025 responsive dashboard</p>
+            <p>&copy; 2026 responsive dashboard</p>
         </footer>
     </div>
+
+    <!-- MODAL DODAWANIA NOWEGO ZDARZENIA -->
+    <div class="modal" id="addEventModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModalBtn">&times;</span>
+            <h2>Nowe Zdarzenie</h2>
+            <form id="addEventForm">
+                <div class="form-group">
+                    <label for="eventUser">Użytkownik</label>
+                    <input type="text" id="eventUser" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="eventAction">Akcja</label>
+                    <select id="eventAction" required>
+                        <option value="" disabled selected>Wybierz akcję...</option>
+                        <option value="Logowanie">Logowanie</option>
+                        <option value="Wylogowanie">Wylogowanie</option>
+                        <option value="Zmiana hasła">Zmiana hasła</option>
+                        <option value="Edycja profilu">Edycja profilu</option>
+                        <option value="Błąd płatności">Błąd płatności</option>
+                        <option value="Generowanie raportu">Generowanie raportu</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="eventStatus">Status</label>
+                    <select id="eventStatus" required>
+                        <option value="Sukces">Sukces</option>
+                        <option value="Oczekuje">Oczekuje</option>
+                        <option value="Błąd">Błąd</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="cancel-btn" id="cancelModalBtn">Anuluj</button>
+                    <button type="submit" class="submit-btn">Dodaj</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="js/script.js"></script>
+    <script type="module" src="js/script.js"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zaloguj się</title>
+    <title>Zarejestruj się</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -12,12 +12,12 @@
     <div class="login-container">
         
         <div class="login-box card-style">
-            <div style="display: flex; flex-direction: row; text-align: center;">
-            <a href="index.html"><i class="fa-solid fa-angle-left"></i></a>
-            <h1 style="margin-bottom: 0px;">Witaj ponownie</h1>
+            <div style="display: flex; flex-direction: row; align-items: center; gap: 15px;">
+                <a href="login.html"><i class="fa-solid fa-angle-left"></i></a>
+                <h1 style="margin-bottom: 0px;">Utwórz konto</h1>
             </div><br>
 
-            <form id="loginForm">
+            <form id="registerForm">
                 <div class="form-group">
                     <label for="emailInput">E-mail</label>
                     <div class="input-wrapper">
@@ -28,32 +28,23 @@
                 <div class="form-group">
                     <label for="passwordInput">Hasło</label>
                     <div class="input-wrapper">
-                        <input type="password" id="passwordInput" placeholder="********" required>
+                        <input type="password" id="passwordInput" placeholder="Co najmniej 6 znaków" required>
                         <i class="fa-regular fa-eye toggle-password" id="togglePasswordBtn" style="cursor: pointer;"></i>
                     </div>
                 </div>
 
-                <div class="form-group-checkbox" style="justify-content: space-between;">
-                    <div style="display:flex; gap:10px; align-items:center;">
-                        <input type="checkbox" id="login-remember">
-                        <label for="login-remember">Pamiętaj mnie</label>
+                <div class="form-group">
+                    <label for="passwordConfirmInput">Potwierdź hasło</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="passwordConfirmInput" placeholder="********" required>
                     </div>
-                    <a href="#" style="font-size: 13px; color: #007bff;">Nie pamiętasz hasła?</a>
                 </div>
 
-                <button type="submit" class="login-btn">Zaloguj się</button>
+                <button type="submit" class="login-btn">Zarejestruj się</button>
             </form>
 
-            <div class="divider-text">lub zaloguj przez</div>
-
-                <div class="social-login">
-                    <button class="social-btn" id="btn-google"><i class="fa-brands fa-google"></i></button>
-                    <button class="social-btn" id="btn-amazon"><i class="fa-brands fa-amazon"></i></button>
-                    <button class="social-btn" id="btn-windows"><i class="fa-brands fa-windows"></i></button>
-                </div>
-
             <div class="login-footer">
-                <p>Nie masz konta? <a href="rejestracja.html">Zarejestruj się</a></p>
+                <p>Masz już konto? <a href="login.html">Zaloguj się</a></p>
             </div>
         </div> 
         <br>
