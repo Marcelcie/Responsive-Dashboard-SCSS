@@ -821,16 +821,45 @@ i { margin-right: 15px; font-size: 20px; }
         color: var(--text-muted);
     }
 }
+// tablica zarządzania użytkownikami 
 
 .user-list-table{
+    font-family: 'Inter',sans-serif;
     margin: 25px 0;
     font-size: 0.9rem;
     border-collapse: collapse;
     min-width: 400px;
-    tr, thead{
-      background-color: blue;
-      padding: 10px;
-    }
+    margin: 0 auto;
+}
+
+.user-list-table th{
+background-color: #0078D4;
+color: #FFF;
+padding: 10px;
+text-align: left;
+position: sticky;
+top:0;
+}
+.user-list-table td{
+    padding: 6px 8px;
+    font-weight: normal;
+}
+.user-list-table tbody tr:nth-child(even){
+    background-color: #f3f3f3;
+}
+.user-list-table tr{
+    scroll-snap-align: start;
+}
+#scrollable-table{
+    height: 80%;
+    width: 80%;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    margin: 30px auto;
+
+}
+#scrollable-table > .user-list-table{
+    width: 100%;
 }
 
 

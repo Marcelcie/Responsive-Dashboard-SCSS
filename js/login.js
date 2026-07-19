@@ -113,6 +113,7 @@ async function handleRegister(e) {
     } else {
       alert('❌ Rejestracja nie powiodła się.');
     }
+    
   } catch (error) {
     console.error("❌ Błąd rejestracji:", error);
     if (error.message === "auth/email-already-in-use" || error.code === "auth/email-already-in-use") {

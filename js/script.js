@@ -200,6 +200,31 @@ function uruchomRealtimeDashboard() {
 
         // 4. Zaktualizuj/Zainicjalizuj wykres aktywności
         renderujLubAktualizujWykres(listaZdarzen);
+        
+    });
+    obserwujDane("uzytkownicy", (dane) => {
+        console.log("👥 Dane użytkowników zaktualizowane:", dane);
+        
+        const listaUzytkownikow = [];
+
+        if (dane) {
+            Object.keys(dane).forEach(klucz => {
+                const item = dane[klucz];
+                listaUzytkownikow.push({
+                    id: "AIzaSyAgqBNwAojX-j84eYatGUO0_E7qGdN-h8A", // To jest unikalny klucz/ID z Firebase (doc.id / node key)
+                    ...item
+                });
+            });
+        }
+        
+        const usersCountEl = document.getElementById('stats-users-count');
+    if (usersCountEl) {
+        const mockUsers = JSON.parse(localStorage.getItem('mock_users') || '[]');
+        // Tutaj używamy dokładnie tej tablicy, którą stworzyliśmy linijki wyżej:
+        const totalUsers = listaUzytkownikow.length + mockUsers.length; 
+        usersCountEl.textContent = totalUsers.toLocaleString();
+    }
+        renderujTabeleUzytkownikow(listaUzytkownikow);
     });
 }
 
@@ -236,19 +261,42 @@ function renderujTabeleZdarzen(zdarzenia) {
     });
 }
 
+// tabela zdarzen uzytkownika
+function renderujTabeleUzytkownikow(uzytkownicy) {
+    const tbody = document.getElementById('usertable');
+    if (!tbody) return;
+
+    tbody.innerHTML = '';
+    if (!uzytkownicy || uzytkownicy.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; padding: 20px; color: var(--text-light);">Brak zarejestrowanych użytkowników</td></tr>`;
+        return;
+    }
+
+    uzytkownicy.forEach(user => {
+        const tr = document.createElement('tr');
+
+        tr.innerHTML = `
+            <td>${escapeHTML(user.id)}</td>
+            <td>${escapeHTML(user.email)}</td>
+            <td>${escapeHTML(user.rola || 'Użytkownik')}</td>
+            <td><span class="badge ${user.status === 'Aktywny' ? 'success' : 'danger'}">${escapeHTML(user.status || 'Nieaktywny')}</span></td>
+        `;
+        
+        tbody.appendChild(tr);
+    });
+}
+
 /**
  * Aktualizuje wartości na trzech kartach podglądu.
  */
-function zaktualizujKartyStatystyk(zdarzenia) {
+function zaktualizujKartyStatystyk(zdarzenia, liczbaUzytkownikow = 0) {
     const usersCountEl = document.getElementById('stats-users-count');
     const eventsCountEl = document.getElementById('stats-events-count');
     const errorsCountEl = document.getElementById('stats-errors-count');
 
     // Liczba użytkowników (odczytujemy zarejestrowanych z LocalStorage + stały offset)
     if (usersCountEl) {
-        const mockUsers = JSON.parse(localStorage.getItem('mock_users') || '[]');
-        const totalUsers = 1240 + mockUsers.length;
-        usersCountEl.textContent = totalUsers.toLocaleString();
+        usersCountEl.textContent = liczbaUzytkownikow;
     }
 
     // Liczba zdarzeń (rozmiar tabeli)
@@ -295,7 +343,7 @@ function renderujLubAktualizujWykres(zdarzenia) {
         if (indexDnia === -1) indexDnia = 6; // Niedziela ląduje na indeksie 6
         
         if (indexDnia >= 0 && indexDnia < 7) {
-            aktywosc[indexDnia]++;
+            aktywnosc[indexDnia]++;
         }
     });
 

@@ -11,7 +11,7 @@ import {
   get,                    
   update,                 
   remove,                 
-  onValue
+  onValue,
 } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
 
 import {
@@ -21,11 +21,8 @@ import {
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
 
+
 import { database, auth, isFirebaseConfigured } from "./firebase-config.js";
-
-import dotenv from 'dotenv';
-dotenv.config();
-
 // Lista słuchaczy stanu zalogowania dla trybu offline
 const authListeners = [];
 
@@ -222,12 +219,24 @@ export async function usunDane(sciezka) {
 export async function zarejestrajUzytkownika(email, haslo) {
   if (isFirebaseConfigured) {
     try {
+      // 1. Utwórz konto w Firebase Auth
       const result = await createUserWithEmailAndPassword(auth, email, haslo);
       console.log("✅ [Firebase] Zarejestrowano użytkownika:", result.user.uid);
+      
+      // 2. 🔥 ZAPISZ DO REALTIME DATABASE
+      await set(ref(database, 'uzytkownicy/' + result.user.uid), {
+          email: email,
+          rola: "user",
+          status: "Aktywny",
+          createdAt: new Date().toISOString()
+      });
+      console.log("✅ [Firebase] Zapisano w Realtime Database");
+      
       return result.user;
+      
     } catch (blad) {
       console.error("❌ [Firebase] Błąd rejestracji:", blad);
-      throw blad; // Przekazujemy błąd wyżej, by pokazać komunikat w UI
+      throw blad;
     }
   } else {
     // Tryb offline
@@ -243,7 +252,9 @@ export async function zarejestrajUzytkownika(email, haslo) {
       const nowyUzytkownik = {
         uid: "mock_uid_" + Date.now(),
         email: email,
-        haslo: haslo // Przechowywane lokalnie jako tekst do prostych testów offline
+        rola: "user",           // 🔥 DODAJ ROLĘ
+        status: "Aktywny",      // 🔥 DODAJ STATUS
+        haslo: haslo
       };
       
       users.push(nowyUzytkownik);
