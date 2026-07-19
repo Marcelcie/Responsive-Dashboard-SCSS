@@ -372,6 +372,14 @@ function zaktualizujStylWykresu() {
     myChart.update();
 }
 
+
+/**
+ * 
+ * Strona zarządania treścia
+ */
+
+
+
 // --- FUNKCJE POMOCNICZE ---
 
 /**

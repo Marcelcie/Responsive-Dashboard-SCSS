@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive-Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="dashboard-grid">
+
+        <header class="header">
+            <div class="logo">Admin</div>
+            <nav class="user-nav">
+                <button id="theme-toggle" class="theme-btn" title="Przełącz motyw">
+                    🌙
+                </button>
+                <span id="user-email-display">Wczytywanie...</span>
+                <a href="login.html" id="user_login"
+                    style="display: flex !important; width: 50px !important; height: 50px !important; justify-content: center; align-items: center;">
+                    <i class="fa-solid fa-circle-user" style="font-size: 40px !important; margin: 0 !important;"></i>
+                </a>
+                <a class="logout" id="logoutBtn" style="cursor: pointer;" title="Wyloguj się"><i class="fa fa-sign-out"
+                        aria-hidden="true"></i></a>
+            </nav>
+        </header>
+
+        <aside class="sidebar">
+            <nav class="main-menu">
+                <ul>
+                    <li><a href="index.html" class="active">Pulpit<i class="fa-solid fa-house"></i></a></li>
+                    <li><a href="user.managment.html">zarządzanie użytkownikami<i class="fa-solid fa-address-book"></i></a></li>
+                    <li><a href="#">Ustawienia<i class="fa-solid fa-gear"></i></a></li>
+                </ul>
+            </nav>
+        </aside>
+
+<main>
+    <br>
+    <h1 style="text-align: center;">Zarządzanie Użytkownikami</h1>
+    <br>
+    <section>
+        <table class="user-list-table" border="1px">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>email</th>
+                <th>rola</th>
+                <th>status</th>
+            </tr>
+            <thead>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </section>
+</main>
+</body>

@@ -816,6 +816,17 @@ i {
   color: var(--text-muted);
 }
 
+.user-list-table {
+  margin: 25px 0;
+  font-size: 0.9rem;
+  border-collapse: collapse;
+  min-width: 400px;
+}
+.user-list-table tr, .user-list-table thead {
+  background-color: blue;
+  padding: 10px;
+}
+
 /* Dodatkowa poprawka mobilna */
 @media (max-width: 768px) {
   .login-container {
@@ -824,6 +835,4 @@ i {
   .simple-footer {
     margin-top: 40px;
   }
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */
