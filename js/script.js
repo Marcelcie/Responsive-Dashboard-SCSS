@@ -203,28 +203,28 @@ function uruchomRealtimeDashboard() {
         
     });
     obserwujDane("uzytkownicy", (dane) => {
-        console.log("👥 Dane użytkowników zaktualizowane:", dane);
-        
-        const listaUzytkownikow = [];
+    console.log("👥 Dane użytkowników zaktualizowane:", dane);
+    
+    const listaUzytkownikow = [];
 
-        if (dane) {
-            Object.keys(dane).forEach(klucz => {
-                const item = dane[klucz];
-                listaUzytkownikow.push({
-                    id: "AIzaSyAgqBNwAojX-j84eYatGUO0_E7qGdN-h8A", // To jest unikalny klucz/ID z Firebase (doc.id / node key)
-                    ...item
-                });
+    if (dane) {
+        Object.keys(dane).forEach(klucz => {
+            const item = dane[klucz];
+            listaUzytkownikow.push({
+                id: klucz,  // 🔥 PRAWDZIWE UID Z FIREBASE
+                email: item.email || 'brak',
+                rola: item.rola || 'Użytkownik',
+                status: item.status || 'Nieaktywny'
             });
-        }
-        
-        const usersCountEl = document.getElementById('stats-users-count');
-    if (usersCountEl) {
-        const mockUsers = JSON.parse(localStorage.getItem('mock_users') || '[]');
-        // Tutaj używamy dokładnie tej tablicy, którą stworzyliśmy linijki wyżej:
-        const totalUsers = listaUzytkownikow.length + mockUsers.length; 
-        usersCountEl.textContent = totalUsers.toLocaleString();
+        });
     }
-        renderujTabeleUzytkownikow(listaUzytkownikow);
+    
+    const usersCountEl = document.getElementById('stats-users-count');
+    if (usersCountEl) {
+        usersCountEl.textContent = listaUzytkownikow.length;
+    }
+    
+    renderujTabeleUzytkownikow(listaUzytkownikow);
     });
 }
 

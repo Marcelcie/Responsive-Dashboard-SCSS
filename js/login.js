@@ -45,6 +45,86 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+  
+    // 🔥 DODAJ OBSŁUGĘ WSKAŹNIKA SIŁY HASŁA
+    const passwordInput = document.getElementById('passwordInput');
+    const strengthFill = document.getElementById('strengthFill');
+    const strengthText = document.getElementById('strengthText');
+    
+    if (passwordInput && strengthFill && strengthText) {
+        passwordInput.addEventListener('input', () => {
+            const haslo = passwordInput.value;
+            const sila = sprawdzSileHasla(haslo);
+            aktualizujWskaznikSily(sila, strengthFill, strengthText);
+        });
+    }
+
+/**
+ * 🔒 Sprawdza siłę hasła
+ * Zwraca: 0 (puste), 1 (słabe), 2 (średnie), 3 (mocne)
+ */
+function sprawdzSileHasla(haslo) {
+    if (!haslo) return 0;
+    
+    let punkty = 0;
+    
+    // Długość
+    if (haslo.length >= 6) punkty++;
+    if (haslo.length >= 10) punkty++;
+    
+    // Wielkie litery
+    if (/[A-Z]/.test(haslo)) punkty++;
+    
+    // Małe litery
+    if (/[a-z]/.test(haslo)) punkty++;
+    
+    // Cyfry
+    if (/[0-9]/.test(haslo)) punkty++;
+    
+    // Znaki specjalne
+    if (/[!@#$%^&*(),.?":{}|<>]/.test(haslo)) punkty++;
+    
+    // Wynik
+    if (punkty <= 2) return 1;      // słabe
+    if (punkty <= 4) return 2;      // średnie
+    return 3;                        // mocne
+}
+
+/**
+ * 🎨 Aktualizuje wygląd wskaźnika
+ */
+function aktualizujWskaznikSily(sila, fillEl, textEl) {
+    // Usuń wszystkie klasy
+    fillEl.classList.remove('slabe', 'srednie', 'mocne');
+    textEl.classList.remove('slabe', 'srednie', 'mocne');
+    
+    switch(sila) {
+        case 0: // puste
+            fillEl.style.width = '0%';
+            fillEl.style.backgroundColor = 'transparent';
+            textEl.textContent = 'Siła hasła';
+            textEl.style.color = '#888';
+            break;
+            
+        case 1: // słabe
+            fillEl.classList.add('slabe');
+            textEl.classList.add('slabe');
+            textEl.textContent = 'Słabe hasło';
+            break;
+            
+        case 2: // średnie
+            fillEl.classList.add('srednie');
+            textEl.classList.add('srednie');
+            textEl.textContent = 'Średnie hasło';
+            break;
+            
+        case 3: // mocne
+            fillEl.classList.add('mocne');
+            textEl.classList.add('mocne');
+            textEl.textContent = 'Mocne hasło! ✅';
+            break;
+    }
+}
 
 /**
  * 📝 OBSŁUGA LOGOWANIA
@@ -114,12 +194,18 @@ async function handleRegister(e) {
       alert('❌ Rejestracja nie powiodła się.');
     }
     
-  } catch (error) {
-    console.error("❌ Błąd rejestracji:", error);
-    if (error.message === "auth/email-already-in-use" || error.code === "auth/email-already-in-use") {
-      alert('❌ Ten adres e-mail jest już zarejestrowany!');
-    } else {
-      alert('❌ Błąd podczas rejestracji: ' + error.message);
+    } catch (error) {
+        console.error("❌ Błąd rejestracji:", error);
+        
+        // 🔥 Firebase zwraca kod błędu w error.code
+        if (error.code === "auth/email-already-in-use") {
+          alert('❌ Ten adres e-mail jest już zarejestrowany!');
+        } else if (error.code === "auth/weak-password") {
+          alert('❌ Hasło jest zbyt słabe! Minimum 6 znaków.');
+        } else if (error.code === "auth/invalid-email") {
+          alert('❌ Nieprawidłowy format adresu e-mail.');
+        } else {
+          alert('❌ Błąd podczas rejestracji: ' + error.message);
+        }
     }
-  }
 }

@@ -582,6 +582,10 @@ i {
   text-decoration: underline;
 }
 
+a#rules_checkbox:hover {
+  color: #0078D4;
+}
+
 /* --- SEPARATOR --- */
 .divider-text {
   display: flex;
@@ -843,6 +847,10 @@ i {
   background-color: #f3f3f3;
 }
 
+[data-theme=dark] .user-list-table tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.05); /* 5% bieli */
+}
+
 .user-list-table tr {
   scroll-snap-align: start;
 }
@@ -857,6 +865,65 @@ i {
 
 #scrollable-table > .user-list-table {
   width: 100%;
+}
+
+/* Kontener wskaźnika */
+.password-strength {
+  margin-top: 6px;
+}
+
+/* Pasek tła */
+.strength-bar {
+  width: 100%;
+  height: 5px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+/* Wypełnienie paska */
+.strength-fill {
+  width: 0%;
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.3s ease, background-color 0.3s ease;
+  background-color: transparent;
+}
+
+/* Kolory dla różnych poziomów siły */
+.strength-fill.slabe {
+  width: 33%;
+  background-color: #e74c3c; /* czerwony */
+}
+
+.strength-fill.srednie {
+  width: 66%;
+  background-color: #f39c12; /* pomarańczowy */
+}
+
+.strength-fill.mocne {
+  width: 100%;
+  background-color: #2ecc71; /* zielony */
+}
+
+/* Tekst siły hasła */
+#strengthText {
+  font-size: 12px;
+  color: #888;
+  transition: color 0.3s ease;
+}
+
+#strengthText.slabe {
+  color: #e74c3c;
+}
+
+#strengthText.srednie {
+  color: #f39c12;
+}
+
+#strengthText.mocne {
+  color: #2ecc71;
 }
 
 /* Dodatkowa poprawka mobilna */

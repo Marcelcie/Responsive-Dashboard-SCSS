@@ -19,6 +19,12 @@
 
             <form id="registerForm">
                 <div class="form-group">
+                        <label for="nameInput">Imię i nazwisko</label>
+                        <div class="input-wrapper">
+                        <input type="text" id="nameInput" placeholder="Jan Kowalski" required>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="emailInput">E-mail</label>
                     <div class="input-wrapper">
                         <input type="email" id="emailInput" placeholder="twoj@email.com" required>
@@ -39,7 +45,22 @@
                         <input type="password" id="passwordConfirmInput" placeholder="********" required>
                     </div>
                 </div>
-
+                
+                <div class = "password-strength">
+                     <div class="strength-bar" id="strengthBar">
+                         <div class="strength-fill" id="strengthFill"></div>
+                     </div>
+                     <small id="strengthText" style="font-size: 12px; color: #888;">Siła hasła</small>
+                </div>
+                <br>
+                <div class="form-group">
+                    <div style="width: 100%;">
+                    <label class="checkbox-label" style="display: flex;flex-direction: row;">
+                        <input type="checkbox" id="termsCheckbox" required style="margin-right: 5px;">
+                        <a href="#" id="rules_checkbox">Akceptuję Regulamin</a>
+                    </label>
+                    </div>
+                </div>
                 <button type="submit" class="login-btn">Zarejestruj się</button>
             </form>
 
