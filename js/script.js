@@ -2,8 +2,12 @@ import {
     sprawdzStanAutoryzacji, 
     wylogujUzytkownika, 
     obserwujDane, 
-    zapiszDane 
+    zapiszDane,
+    pokazToast
 } from "./firebase-helpers.js";
+
+window.zalogowanyUzytkownik = null;
+
 
 // Zmienna przechowująca referencję do wykresu i zalogowanego użytkownika
 let myChart = null;
@@ -16,6 +20,7 @@ sprawdzStanAutoryzacji((uzytkownik) => {
         window.location.href = 'login.html';
     } else {
         zalogowanyUzytkownik = uzytkownik;
+        window.zalogowanyUzytkownik = uzytkownik;
         console.log("✅ Zalogowano jako:", uzytkownik.email);
         
         // Zaktualizuj wyświetlanie e-maila w nagłówku
@@ -23,6 +28,12 @@ sprawdzStanAutoryzacji((uzytkownik) => {
         if (emailDisplay) {
             emailDisplay.textContent = uzytkownik.email;
         }
+        const typewriterEl = document.getElementById('typewriter-text');
+        if (typewriterEl) {
+            const nazwa = uzytkownik.email?.split('@')[0] || 'Adminie';
+            typeWriter(typewriterEl, `Cześć ${nazwa}, miło Cię widzieć!`);
+        }
+        pokazToast('Witaj w panelu!', 'success');
         
         // Rozpocznij nasłuchiwanie zdarzeń w czasie rzeczywistym
         uruchomRealtimeDashboard();
@@ -162,7 +173,7 @@ function inicjalizujModal() {
             modal.classList.remove('active');
             addEventForm.reset();
         } else {
-            alert("❌ Nie udało się zapisać zdarzenia. Spróbuj ponownie.");
+            pokazToast("❌ Nie udało się zapisać zdarzenia. Spróbuj ponownie.",'error');
         }
     });
 }
@@ -453,6 +464,24 @@ function wyliczTimestampZDaty(dataStr) {
         console.warn("Błąd parsowania daty:", dataStr, e);
     }
     return Date.now();
+}
+
+
+ /* 🖊️ Efekt maszyny do pisania
+ */
+function typeWriter(element, tekst, predkosc = 50) {
+    let i = 0;
+    element.textContent = '';
+
+    function pisz() {
+        if (i < tekst.length) {
+            element.textContent += tekst.charAt(i);
+            i++;
+            setTimeout(pisz, predkosc);
+        }
+    }
+
+    pisz();
 }
 
 /**

@@ -332,6 +332,36 @@ export async function wylogujUzytkownika() {
     }
   }
 }
+/**
+ * 🔔 Wyświetla toast
+ * @param {string} tekst - treść powiadomienia
+ * @param {string} typ - 'success', 'error', 'warning', 'info'
+ */
+export function pokazToast(tekst, typ = 'info') {
+    const container = document.getElementById('toast-container');
+    if (!container) return;
+
+    const ikony = {
+        success: 'fa-circle-check',
+        error: 'fa-circle-xmark',
+        warning: 'fa-triangle-exclamation',
+        info: 'fa-circle-info'
+    };
+
+    const toast = document.createElement('div');
+    toast.className = `toast ${typ}`;
+    toast.innerHTML = `<i class="fa-solid ${ikony[typ]}"></i> ${tekst}`;
+    
+    // Kliknięcie zamyka toast
+    toast.addEventListener('click', () => toast.remove());
+
+    container.appendChild(toast);
+
+    // Automatyczne usunięcie po 3 sekundach
+    setTimeout(() => {
+        if (toast.parentNode) toast.remove();
+    }, 3000);
+}
 
 /**
  * Pomocnicza funkcja ładująca domyślne dane do tabeli jeśli baza/LocalStorage jest pusta.

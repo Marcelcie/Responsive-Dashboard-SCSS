@@ -5,7 +5,7 @@
  * Posiada dodatkowe ułatwienia, takie jak pokazywanie hasła.
  */
 
-import { zalogujUzytkownika, zarejestrajUzytkownika } from "./firebase-helpers.js";
+import { zalogujUzytkownika, zarejestrajUzytkownika, pokazToast } from "./firebase-helpers.js";
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Szukamy formularza logowania
@@ -136,7 +136,7 @@ async function handleLogin(e) {
   const haslo = document.getElementById('passwordInput').value;
   
   if (!email || !haslo) {
-    alert('❌ Podaj e-mail i hasło!');
+    pokazToast('❌ Podaj e-mail i hasło!','error');
     return;
   }
   
@@ -148,12 +148,9 @@ async function handleLogin(e) {
     if (uzytkownik) {
       console.log("✅ Zalogowano pomyślnie! UID:", uzytkownik.uid);
       window.location.href = 'index.html';
-    } else {
-      alert('❌ Nieprawidłowy e-mail lub hasło.');
     }
   } catch (error) {
-    console.error("❌ Błąd logowania:", error);
-    alert('❌ Wystąpił błąd podczas logowania: ' + error.message);
+    pokazToast('❌ Nieprawidłowy e-mail lub hasło.','error');
   }
 }
 
@@ -168,17 +165,17 @@ async function handleRegister(e) {
   const hasloPotwierdzenie = document.getElementById('passwordConfirmInput').value;
   
   if (!email || !haslo || !hasloPotwierdzenie) {
-    alert('❌ Wypełnij wszystkie pola formularza!');
+    pokazToast('❌ Wypełnij wszystkie pola formularza!','error');
     return;
   }
   
   if (haslo !== hasloPotwierdzenie) {
-    alert('❌ Hasła nie są identyczne!');
+    pokazToast('❌ Hasła nie są identyczne!','error');
     return;
   }
   
   if (haslo.length < 6) {
-    alert('❌ Hasło musi składać się z co najmniej 6 znaków!');
+    pokazToast('❌ Hasło musi składać się z co najmniej 6 znaków!','error');
     return;
   }
   
@@ -188,10 +185,10 @@ async function handleRegister(e) {
     const uzytkownik = await zarejestrajUzytkownika(email, haslo);
     
     if (uzytkownik) {
-      alert('✅ Rejestracja zakończona sukcesem! Możesz się teraz zalogować.');
+      pokazToast('✅ Rejestracja zakończona sukcesem! Możesz się teraz zalogować.');
       window.location.href = 'login.html';
     } else {
-      alert('❌ Rejestracja nie powiodła się.');
+      pokazToast('❌ Rejestracja nie powiodła się.');
     }
     
     } catch (error) {
@@ -199,13 +196,13 @@ async function handleRegister(e) {
         
         // 🔥 Firebase zwraca kod błędu w error.code
         if (error.code === "auth/email-already-in-use") {
-          alert('❌ Ten adres e-mail jest już zarejestrowany!');
+          pokazToast('❌ Ten adres e-mail jest już zarejestrowany!','error');
         } else if (error.code === "auth/weak-password") {
-          alert('❌ Hasło jest zbyt słabe! Minimum 6 znaków.');
+          pokazToast('❌ Hasło jest zbyt słabe! Minimum 6 znaków.','error');
         } else if (error.code === "auth/invalid-email") {
-          alert('❌ Nieprawidłowy format adresu e-mail.');
+          pokazToast('❌ Nieprawidłowy format adresu e-mail.','error');
         } else {
-          alert('❌ Błąd podczas rejestracji: ' + error.message);
+          pokazToast('❌ Błąd podczas rejestracji: ','error');
         }
     }
 }
