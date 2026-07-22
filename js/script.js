@@ -33,8 +33,7 @@ sprawdzStanAutoryzacji((uzytkownik) => {
             const nazwa = uzytkownik.email?.split('@')[0] || 'Adminie';
             typeWriter(typewriterEl, `Cześć ${nazwa}, miło Cię widzieć!`);
         }
-        pokazToast('Witaj w panelu!', 'success');
-        
+                
         // Rozpocznij nasłuchiwanie zdarzeń w czasie rzeczywistym
         uruchomRealtimeDashboard();
     }
@@ -172,6 +171,7 @@ function inicjalizujModal() {
         if (sukces) {
             modal.classList.remove('active');
             addEventForm.reset();
+            pokazToast("Zdarzenie zapisane.","success");
         } else {
             pokazToast("❌ Nie udało się zapisać zdarzenia. Spróbuj ponownie.",'error');
         }
@@ -188,20 +188,25 @@ function uruchomRealtimeDashboard() {
         
         // 1. Zbuduj listę zdarzeń (posortowaną od najnowszych)
         const listaZdarzen = [];
+        let licznikZdarzen = 1;
         if (dane) {
             Object.keys(dane).forEach(klucz => {
                 const item = dane[klucz];
                 listaZdarzen.push({
-                    id: klucz,
+                    id: licznikZdarzen,
                     ...item,
                     // Dodaj timestamp pomocniczy jeśli go nie ma
                     timestamp: item.timestamp || wyliczTimestampZDaty(item.data)
                 });
+                 licznikZdarzen++
             });
         }
         
         // Sortowanie po timestampie malejąco
         listaZdarzen.sort((a, b) => b.timestamp - a.timestamp);
+        listaZdarzen.forEach((zdarzenie, index) => {
+            zdarzenie.id = index + 1;
+        });
 
         // 2. Wyrenderuj tabelę
         renderujTabeleZdarzen(listaZdarzen);
@@ -217,16 +222,18 @@ function uruchomRealtimeDashboard() {
     console.log("👥 Dane użytkowników zaktualizowane:", dane);
     
     const listaUzytkownikow = [];
+    let licznik = 1;
 
     if (dane) {
         Object.keys(dane).forEach(klucz => {
             const item = dane[klucz];
             listaUzytkownikow.push({
-                id: klucz,  // 🔥 PRAWDZIWE UID Z FIREBASE
+                id: licznik,
                 email: item.email || 'brak',
                 rola: item.rola || 'Użytkownik',
                 status: item.status || 'Nieaktywny'
             });
+            licznik++;
         });
     }
     

@@ -225,6 +225,7 @@ export async function zarejestrajUzytkownika(email, haslo) {
       
       // 2. 🔥 ZAPISZ DO REALTIME DATABASE
       await set(ref(database, 'uzytkownicy/' + result.user.uid), {
+          imie: imie,
           email: email,
           rola: "user",
           status: "Aktywny",
@@ -251,9 +252,10 @@ export async function zarejestrajUzytkownika(email, haslo) {
       
       const nowyUzytkownik = {
         uid: "mock_uid_" + Date.now(),
+        imie: imie,
         email: email,
-        rola: "user",           // 🔥 DODAJ ROLĘ
-        status: "Aktywny",      // 🔥 DODAJ STATUS
+        rola: "user",           
+        status: "Aktywny",      
         haslo: haslo
       };
       
