@@ -3,6 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- 🔥 BLOKADA MIGANIA MOTYWU -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme');
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
     <title>Responsive-Dashboard</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -28,8 +37,8 @@
             <nav class="main-menu">
                 <ul>
                     <li><a href="index.html" class="active">Pulpit<i class="fa-solid fa-house"></i></a></li>
-                    <li><a href="user.managment.html">zarządzanie użytkownikami<i class="fa-solid fa-address-book"></i></a></li>
-                    <li><a href="#">Ustawienia<i class="fa-solid fa-gear"></i></a></li>
+                    <li><a href="user.managment.html">Zarządzanie użytkownikami<i class="fa-solid fa-address-book"></i></a></li>
+                    <li><a href="settings.html">Ustawienia<i class="fa-solid fa-gear"></i></a></li>
                 </ul>
             </nav>
         </aside>

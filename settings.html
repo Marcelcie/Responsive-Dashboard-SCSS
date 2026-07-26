@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ustawienia – Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Skrypt zapobiegający miganiu motywu -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme');
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+</head>
+<body>
+    <div class="dashboard-grid">
+        <header class="header">
+            <div class="logo">Admin</div>
+            <nav class="user-nav">
+                <button id="theme-toggle" class="theme-btn" title="Przełącz motyw">
+                    🌙
+                </button>
+                <span id="user-email-display">Zaloguj się</span>
+                <a href="login.html" id="user_login" style="display: flex !important; width: 50px !important; height: 50px !important; justify-content: center; align-items: center;">
+                    <i class="fa-solid fa-circle-user" style="font-size: 40px !important; margin: 0 !important;"></i>
+                </a>
+                <a class="logout" id="logoutBtn" style="cursor: pointer;" title="Wyloguj się"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+            </nav>
+        </header>
+
+        <aside class="sidebar">
+            <nav class="main-menu">
+                <ul>
+                    <li><a href="index.html">Pulpit<i class="fa-solid fa-house"></i></a></li>
+                    <li><a href="user.managment.html">Zarządzanie użytkownikami<i class="fa-solid fa-address-book"></i></a></li>
+                    <li><a href="settings.html" class="active">Ustawienia<i class="fa-solid fa-gear"></i></a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <h1>Ustawienia</h1>
+            <div class="settings-container">
+                <!-- Sekcja Profil -->
+                <div class="card-style" style="margin-bottom: 30px;">
+                    <h2>Profil administratora</h2>
+                    <form id="profile-settings-form">
+                        <div class="form-group">
+                            <label for="settings-name">Imię</label>
+                            <input type="text" id="settings-name" placeholder="Twoje imię" required>
+                            <br>
+                        </div>
+                        <div class="form-group">
+                            <label for="settings-email">Email</label>
+                            <br>
+                            <input type="email" id="settings-email" placeholder="admin@example.com" required>
+                        </div>
+                        <button type="submit" class="login-btn" style="width: auto; padding: 10px 30px;">Zapisz zmiany</button>
+                    </form>
+                </div>
+
+                <!-- Sekcja Ogólne -->
+                <div class="card-style" style="margin-bottom: 30px;">
+                    <h2>Ogólne</h2>
+                    <div class="form-group">
+                        <label for="site-name">Nazwa strony</label>
+                        <input type="text" id="site-name" placeholder="Mój Dashboard" value="Admin Dashboard">
+                    </div>
+                    <div class="form-group">
+                        <label for="timezone">Strefa czasowa</label>
+                        <select id="timezone">
+                            <option value="Europe/Warsaw">Europa/Warszawa</option>
+                            <option value="Europe/London">Europa/Londyn</option>
+                            <option value="America/New_York">Ameryka/Nowy Jork</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Sekcja Bezpieczeństwo -->
+                <div class="card-style" style="margin-bottom: 30px;">
+                    <h2>Bezpieczeństwo</h2>
+                    <button id="change-password-btn" class="login-btn" style="width: auto; padding: 10px 20px; background-color: #f39c12;">Zmień hasło</button>
+                    <p style="margin-top: 15px; font-size: 0.9rem; color: var(--text-light);">
+                    </p>
+                </div>
+
+                <!-- Sekcja Usuwania konta -->
+                <div class="card-style" style="margin-bottom: 30px;">
+                    <h2>Usuń konto</h2>
+                    <button id="delete-account-btn" class="login-btn" style="width: auto; padding: 10px 20px; background-color: #e74c3c;">Usuń konto</button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2026 responsive dashboard</p>
+        </footer>
+    </div>
+
+    <!-- TOAST CONTAINER -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script type="module" src="js/settings.js"></script>
+    <script type="module" src="js/script.js"></script>
+</body>
+</html>

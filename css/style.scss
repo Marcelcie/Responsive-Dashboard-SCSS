@@ -460,6 +460,7 @@ i { margin-right: 15px; font-size: 20px; }
         }
     }
     
+    
     .modal-actions {
         display: flex;
         justify-content: flex-end;
@@ -985,6 +986,54 @@ top:0;
 
 .toast i {
     font-size: 18px;
+}
+
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.settings-container .card-style {
+    width: 100%;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Ogólne style dla inputów i selectów (poza logowaniem) */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--input-bg);
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s, background-color 0.3s, color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="tel"]:focus,
+select:focus {
+    border-color: var(--primary-color);
+}
+
+/* Dla ciemnego motywu – delikatne dopasowanie */
+[data-theme="dark"] input,
+[data-theme="dark"] select {
+    background-color: #2d2d2d;
+    color: #ecf0f1;
 }
 
 @keyframes slideIn {

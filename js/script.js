@@ -60,41 +60,47 @@ document.addEventListener('DOMContentLoaded', () => {
     inicjalizujModal();
 });
 
-/**
- * Obsługuje wczytywanie i przełączanie jasnego/ciemnego motywu.
- */
 function inicjalizujMotyw() {
     const themeToggle = document.getElementById('theme-toggle');
     if (!themeToggle) return;
 
-    // Pobierz zapisany motyw z LocalStorage
     const zapisanyMotyw = localStorage.getItem('theme') || 'light';
     
-    // Zastosuj motyw na starcie
+    // Ustawienie na starcie
     if (zapisanyMotyw === 'dark') {
-        document.body.setAttribute('data-theme', 'dark');
+        document.documentElement.setAttribute('data-theme', 'dark');
         themeToggle.textContent = '☀️';
     } else {
-        document.body.removeAttribute('data-theme');
+        document.documentElement.removeAttribute('data-theme');
         themeToggle.textContent = '🌙';
     }
 
-    // Obsługa kliknięcia w przycisk motywu
     themeToggle.addEventListener('click', () => {
-        const obecnyMotyw = document.body.getAttribute('data-theme');
+        const obecnyMotyw = document.documentElement.getAttribute('data-theme');
         
         if (obecnyMotyw === 'dark') {
-            document.body.removeAttribute('data-theme');
+            document.documentElement.removeAttribute('data-theme');
             localStorage.setItem('theme', 'light');
             themeToggle.textContent = '🌙';
         } else {
-            document.body.setAttribute('data-theme', 'dark');
+            document.documentElement.setAttribute('data-theme', 'dark');
             localStorage.setItem('theme', 'dark');
             themeToggle.textContent = '☀️';
         }
         
-        // Zaktualizuj kolory wykresu (jeśli jest zainicjalizowany)
-        zaktualizujStylWykresu();
+        if (typeof zaktualizujStylWykresu === 'function') {
+            if (myChart) {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const gridColor = isDark ? '#333333' : '#E0E0E0';
+            const textColor = isDark ? '#ecf0f1' : '#333333';
+            
+            myChart.options.scales.x.ticks.color = textColor;
+            myChart.options.scales.y.ticks.color = textColor;
+            myChart.options.scales.x.grid.color = gridColor;
+            myChart.options.scales.y.grid.color = gridColor;
+            myChart.update();
+}
+        }
     });
 }
 
@@ -369,7 +375,7 @@ function renderujLubAktualizujWykres(zdarzenia) {
     const chartDataValues = dniTygodnia.map((d, idx) => defaultData[idx] + aktywnosc[idx]);
 
     // Pobierz kolory zależnie od motywu
-    const isDark = document.body.getAttribute('data-theme') === 'dark';
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     const gridColor = isDark ? '#333333' : '#E0E0E0';
     const textColor = isDark ? '#ecf0f1' : '#333333';
 
