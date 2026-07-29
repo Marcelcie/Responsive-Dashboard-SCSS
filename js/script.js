@@ -168,11 +168,12 @@ function inicjalizujModal() {
         };
 
         // Unikalny identyfikator zdarzenia na podstawie czasu
+        const uid = zalogowanyUzytkownik.uid;
         const idZdarzenia = "zdarzenie_" + teraz.getTime();
 
         console.log("🔄 Zapisuję nowe zdarzenie:", noweZdarzenie);
         
-        const sukces = await zapiszDane("zdarzenia/" + idZdarzenia, noweZdarzenie);
+        const sukces = await zapiszDane("zdarzenia/" + uid + "/" + idZdarzenia, noweZdarzenie);
         
         if (sukces) {
             modal.classList.remove('active');
